@@ -1,0 +1,2 @@
+# We need to explicitly state here that we want to include the 'jar' files in this folder since those contain the dependencies of the Ant based example
+!*.jar

@@ -1,0 +1,36 @@
+apply plugin: "java"
+apply plugin: "application"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile "io.ghostwriter:ghostwriter-openjdk-v7:0.1.1"
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.13'
+    runtime "io.ghostwriter:ghostwriter-rt-snaperr:0.1.1"
+    runtime "org.slf4j:slf4j-simple:1.7.13"
+}
+
+ext {
+    gwAnnotationProcessor = "io.ghostwriter.openjdk.v7.GhostWriterAnnotationProcessor"
+    mainClass = "io.ghostwriter.sample.justcrash.JustCrash"
+}
+
+// In order to apply GhostWriter to the code base, the correct compile time preprocessor needs to be applied to the compilation step.
+// This is done by providing the "-processor" argument to the Java compiler, that refers to the GhostWriter preprocessor class.
+compileJava {
+    options.compilerArgs = [
+            // use the GhostWriter preprocessor to compile Java classes
+            "-processor", gwAnnotationProcessor
+    ]
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClass
+    }
+}
+
+mainClassName = mainClass
