@@ -1,0 +1,14 @@
+*.class
+
+#build dir
+target
+bin
+build
+.gradle
+.classpath
+
+# IDE
+.idea
+*.iml
+.settings
+.project
