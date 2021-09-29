@@ -20,7 +20,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "io.ghostwriter:ghostwriter:0.8.0"
+        classpath "io.ghostwriter:ghostwriter:0.8.1"
     }
 }
 task instrument(type: JavaExec) {
